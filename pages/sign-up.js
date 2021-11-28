@@ -1,6 +1,6 @@
 
-import * as React from 'react';
-import Link  from 'next/link';
+import React, {useState} from 'react';
+import Link from '@mui/material/Link';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,6 +17,26 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 export default function SignUp() {
+
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const onFirstNameChange = (e) => {
+      setFirstName(e.target.value);
+      console.log(e.target.value);
+    } 
+    const onLastNameChange = (e) => {
+      setLastName(e.target.value);
+    } 
+    const onPasswordChange = (e) => {
+    setPassword(e.target.value);
+    }
+    const onEmailChange = (e) => {
+      setEmail(e.target.value);
+    }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -49,6 +69,7 @@ export default function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  onChange={onFirstNameChange}
                   autoComplete="given-name"
                   name="firstName"
                   required
@@ -60,6 +81,7 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  onChange={onLastNameChange}
                   required
                   fullWidth
                   id="lastName"
@@ -70,6 +92,7 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  onChange={onEmailChange}
                   required
                   fullWidth
                   id="email"
@@ -80,6 +103,7 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  onChange={onPasswordChange}
                   required
                   fullWidth
                   name="password"
